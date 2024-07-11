@@ -1,4 +1,5 @@
 from smbus import SMBus
+import time
 
 bus = SMBus(1)
 slave_address = 0x08  # Feste I2C-Slave-Adresse des Arduino
@@ -6,6 +7,7 @@ slave_address = 0x08  # Feste I2C-Slave-Adresse des Arduino
 def write_rfid(block_addr, data):
     try:
         byte_data = [0x02, block_addr] + [ord(c) for c in data.ljust(16, '\0')]
+        print(f"Sende Daten: {byte_data}")  # Debug-Ausgabe der gesendeten Daten
         bus.write_i2c_block_data(slave_address, 0, byte_data)
         print(f"Daten gesendet: {data}")
     except Exception as e:
