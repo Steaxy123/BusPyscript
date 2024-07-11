@@ -15,7 +15,7 @@ def write_rfid(block_addr, data):
         # Warten Sie eine Weile, um dem Arduino Zeit zu geben, den Tag zu erkennen und zu schreiben
         time.sleep(1)
 
-        # Lesen Sie die Antwort vom Arduino (optional, je nach Implementierung)
+        # Lesen Sie die Antwort vom Arduino
         response = bus.read_i2c_block_data(slave_address, 0, 16)
         response_str = ''.join(chr(i) for i in response if i != 0)
         print(f"Antwort vom Arduino: {response_str}")
