@@ -5,13 +5,11 @@ bus = SMBus(1)
 slave_address = 0x08  # Feste I2C-Slave-Adresse des Arduino
 
 
-def read_rfid(block_addr):
+def read_rfid():
     try:
-        # Befehl (0x03) und Blockadresse an den Anfang der Nachricht setzen
-        byte_data = [0x03, block_addr]
-        print(f"Sende Lesebefehl: {byte_data}")  # Debug-Ausgabe der gesendeten Daten
-
         # Sende Lesebefehl an den Arduino
+        byte_data = [0x03]
+        print(f"Sende Lesebefehl: {byte_data}")  # Debug-Ausgabe der gesendeten Daten
         write = i2c_msg.write(slave_address, byte_data)
         bus.i2c_rdwr(write)
 
@@ -30,5 +28,4 @@ def read_rfid(block_addr):
 
 
 if __name__ == "__main__":
-    block_addr = 4  # Beispiel-Blockadresse zum Lesen
-    read_rfid(block_addr)
+    read_rfid()
