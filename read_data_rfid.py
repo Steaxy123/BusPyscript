@@ -32,4 +32,3 @@ def read_rfid(block_addr):
 if __name__ == "__main__":
     block_addr = 4  # Beispiel-Blockadresse zum Lesen
     read_rfid(block_addr)
-
